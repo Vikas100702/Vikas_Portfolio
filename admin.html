@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Vikas Portfolio</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #081b29;
+            color: #ededed;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .admin-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2vh 5%;
+            background: #081b29;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .admin-header .logo {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: #ededed;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .admin-navbar a {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 500;
+            color: #ededed;
+            text-decoration: none;
+            margin-left: 2vw;
+            transition: .3s;
+        }
+
+        .admin-navbar a:hover,
+        .admin-navbar a.active {
+            color: #00abf0;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #081b29;
+            min-width: 15vw;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #ededed;
+            padding: 1.5vh 1vw;
+            text-decoration: none;
+            display: block;
+            transition: .3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #00abf0;
+            color: #081b29;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Admin Home Section */
+        .admin-home {
+            padding: 15vh 5%;
+            text-align: center;
+        }
+
+        .admin-home h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 5vh;
+            color: #00abf0;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2vw;
+        }
+
+        .admin-card {
+            background: #ededed;
+            color: #081b29;
+            padding: 3vh 2vw;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-1vh);
+            box-shadow: 0 10px 20px rgba(237, 237, 237, 0.3);
+        }
+
+        .admin-card i {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 2vh;
+            color: #00abf0;
+        }
+
+        .admin-card h3 {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-weight: 600;
+        }
+
+        /* Modal Styles */
+        .modal,
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #112e42;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #00abf0;
+        }
+
+        .modal h2,
+        .form-container h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #00abf0;
+            text-align: center;
+        }
+
+        .modal input,
+        .modal textarea,
+        .modal select,
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            color: #081b29;
+            background: #ededed;
+            border: 2px solid #00abf0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal input:focus,
+        .modal textarea:focus,
+        .modal select:focus,
+        .form-container input:focus,
+        .form-container textarea:focus,
+        .form-container select:focus {
+            border-color: #00abf0;
+        }
+
+        .modal textarea,
+        .form-container textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal button,
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #081b29;
+            background: #00abf0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .modal button:hover,
+        .form-container button:hover {
+            background: #081b29;
+            color: #00abf0;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ff4d4d;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2vh 10%;
+            background: #081b29;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: clamp(2rem, 2vw, 1rem);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <a href="#" class="logo">Admin Panel</a>
+        <nav class="admin-navbar">
+            <a href="#" class="active">Home</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Resume</a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="openResumeUpload()">Upload Resume</a>
+                </div>
+            </div>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Admin Home Section -->
+    <section class="admin-home">
+        <h2>Update Portfolio</h2>
+        <div class="admin-grid">
+            <!-- Social Media Cards -->
+            <div class="admin-card" onclick="openForm('github')">
+                <i class='bx bxl-github'></i>
+                <h3>GitHub</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('linkedin')">
+                <i class='bx bxl-linkedin'></i>
+                <h3>LinkedIn</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('discord')">
+                <i class='bx bxl-discord-alt'></i>
+                <h3>Discord</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('telegram')">
+                <i class='bx bxl-telegram'></i>
+                <h3>Telegram</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('twitter')">
+                <i class='bx bxl-twitter'></i>
+                <h3>Twitter</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('reddit')">
+                <i class='bx bxl-reddit'></i>
+                <h3>Reddit</h3>
+            </div>
+            <div class="admin-card" onclick="openForm('gmail')">
+                <i class='bx bxl-gmail'></i>
+                <h3>Gmail</h3>
+            </div>
+
+            <!-- About Me Card -->
+            <div class="admin-card" onclick="openAboutForm()">
+                <i class='bx bxs-user-detail'></i>
+                <h3>About Me</h3>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="admin-card" onclick="openSkillsModal()">
+                <i class='bx bxs-wrench'></i>
+                <h3>Skills</h3>
+            </div>
+
+            <!-- Projects Card -->
+            <div class="admin-card" onclick="openProjectsModal()">
+                <i class='bx bxs-folder'></i>
+                <h3>Projects</h3>
+            </div>
+
+            <!-- Upload profile pic card -->
+            <div class="admin-card" onclick="openProfilePicUpload()">
+                <i class='bx bxs-user-circle'></i>
+                <h3>Profile Picture</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Form -->
+    <div id="socialForm" class="modal">
+        <span class="close-btn" onclick="closeModal('socialForm')">&times;</span>
+        <h2 id="formTitle">Update Link</h2>
+        <form id="linkForm">
+            <input type="text" id="linkInput" placeholder="Enter new link" required>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+    <!-- About Me Form -->
+    <div id="aboutForm" class="modal">
+        <span class="close-btn" onclick="closeModal('aboutForm')">&times;</span>
+        <h2>Update About Me</h2>
+        <form id="aboutFormContent">
+            <textarea id="aboutInput" placeholder="Enter new description" required></textarea>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+    <!-- Skills Modal -->
+    <div id="skillsModal" class="modal">
+        <span class="close-btn" onclick="closeModal('skillsModal')">&times;</span>
+        <h2>Skills Management</h2>
+        <button onclick="openUpdateSkillsForm()">Update Existing Skills</button>
+        <button onclick="openAddSkillsForm()">Add New Skills</button>
+        <button onclick="openDeleteSkillsForm()">Delete Skills</button>
+    </div>
+
+    <!-- Update Skills Form -->
+    <div id="updateSkillsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('updateSkillsForm')">&times;</span>
+        <h2>Update Skill</h2>
+        <form id="updateSkillsFormContent">
+            <select id="updateSkillSelect" required>
+                <option value="">Select a skill</option>
+            </select>
+            <textarea id="updateSkillDescription" placeholder="Skill Description" required></textarea>
+            <input type="text" id="updateSkillIcon" placeholder="Icon Class (e.g., bx bxl-flutter)" required>
+            <button type="submit">Update Skill</button>
+        </form>
+    </div>
+
+    <!-- Add Skills Form -->
+    <div id="addSkillsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('addSkillsForm')">&times;</span>
+        <h2>Add New Skill</h2>
+        <form id="addSkillsFormContent">
+            <input type="text" id="addSkillName" placeholder="Skill Name" required>
+            <textarea id="addSkillDescription" placeholder="Skill Description" required></textarea>
+            <input type="text" id="addSkillIcon" placeholder="Icon Class (e.g., bx bxl-flutter)" required>
+            <button type="submit">Add Skill</button>
+        </form>
+    </div>
+
+    <!-- Delete Skills Form -->
+    <div id="deleteSkillsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('deleteSkillsForm')">&times;</span>
+        <h2>Delete Skill</h2>
+        <form id="deleteSkillsFormContent">
+            <select id="deleteSkillSelect" required>
+                <option value="">Select a skill</option>
+            </select>
+            <button type="submit">Delete Skill</button>
+        </form>
+    </div>
+
+    <!-- Projects Modal -->
+    <div id="projectsModal" class="modal">
+        <span class="close-btn" onclick="closeModal('projectsModal')">&times;</span>
+        <h2>Projects Management</h2>
+        <button onclick="openUpdateProjectsForm()">Update Existing Projects</button>
+        <button onclick="openAddProjectsForm()">Add New Projects</button>
+        <button onclick="openDeleteProjectsForm()">Delete Projects</button>
+    </div>
+
+    <!-- Update Projects Form -->
+    <div id="updateProjectsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('updateProjectsForm')">&times;</span>
+        <h2>Update Project</h2>
+        <form id="updateProjectsFormContent">
+            <select id="updateProjectSelect" required>
+                <option value="">Select a project</option>
+            </select>
+            <input type="text" id="updateProjectName" placeholder="Project Name" required>
+            <textarea id="updateProjectDescription" placeholder="Project Description" required></textarea>
+            <input type="file" id="updateProjectImage" accept=".svg, .png, .jpg, .jpeg" required>
+            <input type="text" id="updateProjectGithub" placeholder="Project GitHub Link" required>
+            <button type="submit">Update Project</button>
+        </form>
+    </div>
+
+    <!-- Add Projects Form -->
+    <div id="addProjectsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('addProjectsForm')">&times;</span>
+        <h2>Add New Project</h2>
+        <form id="addProjectsFormContent">
+            <input type="text" id="addProjectName" placeholder="Project Name" required>
+            <textarea id="addProjectDescription" placeholder="Project Description" required></textarea>
+            <input type="file" id="addProjectImage" accept=".svg, .png, .jpg, .jpeg" required>
+            <input type="text" id="addProjectGithub" placeholder="Project GitHub Link" required>
+            <button type="submit">Add Project</button>
+        </form>
+    </div>
+
+    <!-- Delete Projects Form -->
+    <div id="deleteProjectsForm" class="modal">
+        <span class="close-btn" onclick="closeModal('deleteProjectsForm')">&times;</span>
+        <h2>Delete Project</h2>
+        <form id="deleteProjectsFormContent">
+            <select id="deleteProjectSelect" required>
+                <option value="">Select a project</option>
+            </select>
+            <button type="submit">Delete Project</button>
+        </form>
+    </div>
+
+    <!-- Resume Upload Modal -->
+    <div id="resumeUploadModal" class="modal">
+        <span class="close-btn" onclick="closeModal('resumeUploadModal')">&times;</span>
+        <h2>Upload Resume</h2>
+        <form id="resumeUploadForm">
+            <input type="file" id="resumeFile" accept=".docx, .pdf" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <!-- Upload Profile Pic Modal -->
+    <div id="profilePicUploadModal" class="modal">
+        <span class="close-btn" onclick="closeModal('profilePicUploadModal')">&times;</span>
+        <h2>Upload Profile Picture</h2>
+        <form id="profilePicUploadForm">
+            <input type="file" id="profilePicFile" accept=".png, .jpg, .jpeg, .gif" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Vikas Verma. All rights reserved.</p>
+    </footer>
+
+    
+        // Open Modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // Close Modal
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Open Social Media Form
+        function openForm(platform) {
+            const form = document.getElementById('socialForm');
+            const formTitle = document.getElementById('formTitle');
+            formTitle.textContent = `Update ${platform.charAt(0).toUpperCase() + platform.slice(1)} Link`;
+            form.setAttribute('data-platform', platform);
+            openModal('socialForm');
+        }
+
+        // Handle Social Media Form Submission
+        document.getElementById('linkForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const link = document.getElementById('linkInput').value;
+            const platform = document.getElementById('socialForm').getAttribute('data-platform');
+
+            if (link && platform) {
+                localStorage.setItem(platform, link);
+                alert(`Link updated successfully: ${link}`);
+                closeModal('socialForm');
+            }
+        });
+
+        // Open About Me Form
+        function openAboutForm() {
+            const form = document.getElementById('aboutForm');
+            const savedDescription = localStorage.getItem('aboutMe');
+            if (savedDescription) {
+                document.getElementById('aboutInput').value = savedDescription;
+            }
+            openModal('aboutForm');
+        }
+
+        // Handle About Me Form Submission
+        document.getElementById('aboutFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const description = document.getElementById('aboutInput').value;
+
+            if (description) {
+                localStorage.setItem('aboutMe', description);
+                alert(`About Me updated successfully!`);
+                closeModal('aboutForm');
+            }
+        });
+
+        // Open Skills Modal
+        function openSkillsModal() {
+            openModal('skillsModal');
+        }
+
+        // Open Update Skills Form
+        function openUpdateSkillsForm() {
+            closeModal('skillsModal');
+            openModal('updateSkillsForm');
+
+            // Populate skills dropdown
+            const skills = JSON.parse(localStorage.getItem('skills')) || [];
+            const select = document.getElementById('updateSkillSelect');
+            select.innerHTML = '<option value="">Select a skill</option>';
+            skills.forEach(skill => {
+                const option = document.createElement('option');
+                option.value = skill.name;
+                option.textContent = skill.name;
+                select.appendChild(option);
+            });
+
+            // Load skill details when selected
+            select.addEventListener('change', function () {
+                const selectedSkill = skills.find(skill => skill.name === this.value);
+                if (selectedSkill) {
+                    document.getElementById('updateSkillDescription').value = selectedSkill.description;
+                    document.getElementById('updateSkillIcon').value = selectedSkill.icon;
+                }
+            });
+        }
+
+        // Handle Update Skills Form Submission
+        document.getElementById('updateSkillsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const skillName = document.getElementById('updateSkillSelect').value;
+            const skillDescription = document.getElementById('updateSkillDescription').value;
+            const skillIcon = document.getElementById('updateSkillIcon').value;
+
+            if (skillName && skillDescription && skillIcon) {
+                const skills = JSON.parse(localStorage.getItem('skills')) || [];
+                const skillIndex = skills.findIndex(skill => skill.name === skillName);
+
+                if (skillIndex !== -1) {
+                    // Update skill
+                    skills[skillIndex].description = skillDescription;
+                    skills[skillIndex].icon = skillIcon;
+                    localStorage.setItem('skills', JSON.stringify(skills));
+                    alert(`Skill "${skillName}" updated successfully!`);
+                    closeModal('updateSkillsForm');
+                }
+            }
+        });
+
+        // Open Add Skills Form
+        function openAddSkillsForm() {
+            closeModal('skillsModal');
+            openModal('addSkillsForm');
+        }
+
+        // Handle Add Skills Form Submission
+        document.getElementById('addSkillsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const skillName = document.getElementById('addSkillName').value;
+            const skillDescription = document.getElementById('addSkillDescription').value;
+            const skillIcon = document.getElementById('addSkillIcon').value;
+
+            if (skillName && skillDescription && skillIcon) {
+                const skills = JSON.parse(localStorage.getItem('skills')) || [];
+
+                // Check if skill already exists
+                const skillExists = skills.some(skill => skill.name === skillName);
+                if (skillExists) {
+                    alert(`Skill "${skillName}" already exists!`);
+                } else {
+                    // Add new skill
+                    skills.push({ name: skillName, description: skillDescription, icon: skillIcon });
+                    localStorage.setItem('skills', JSON.stringify(skills));
+                    alert(`Skill "${skillName}" added successfully!`);
+                    closeModal('addSkillsForm');
+                }
+            }
+        });
+
+        // Open Delete Skills Form
+        function openDeleteSkillsForm() {
+            closeModal('skillsModal');
+            openModal('deleteSkillsForm');
+
+            // Populate skills dropdown
+            const skills = JSON.parse(localStorage.getItem('skills')) || [];
+            const select = document.getElementById('deleteSkillSelect');
+            select.innerHTML = '<option value="">Select a skill</option>';
+            skills.forEach(skill => {
+                const option = document.createElement('option');
+                option.value = skill.name;
+                option.textContent = skill.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Handle Delete Skills Form Submission
+        document.getElementById('deleteSkillsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const skillName = document.getElementById('deleteSkillSelect').value;
+
+            if (skillName) {
+                const skills = JSON.parse(localStorage.getItem('skills')) || [];
+                const updatedSkills = skills.filter(skill => skill.name !== skillName);
+
+                localStorage.setItem('skills', JSON.stringify(updatedSkills));
+                alert(`Skill "${skillName}" deleted successfully!`);
+                closeModal('deleteSkillsForm');
+            }
+        });
+
+        // Open Projects Modal
+        function openProjectsModal() {
+            openModal('projectsModal');
+        }
+
+        // Open Update Projects Form
+        function openUpdateProjectsForm() {
+            closeModal('projectsModal');
+            openModal('updateProjectsForm');
+
+            // Populate projects dropdown
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            const select = document.getElementById('updateProjectSelect');
+            select.innerHTML = '<option value="">Select a project</option>';
+            projects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project.name;
+                option.textContent = project.name;
+                select.appendChild(option);
+            });
+
+            // Load project details when selected
+            select.addEventListener('change', function () {
+                const selectedProject = projects.find(project => project.name === this.value);
+                if (selectedProject) {
+                    document.getElementById('updateProjectName').value = selectedProject.name;
+                    document.getElementById('updateProjectDescription').value = selectedProject.description;
+                    document.getElementById('updateProjectGithub').value = selectedProject.github;
+                }
+            });
+        }
+
+        // Handle Update Projects Form Submission
+        document.getElementById('updateProjectsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const projectName = document.getElementById('updateProjectName').value;
+            const projectDescription = document.getElementById('updateProjectDescription').value;
+            const projectGithub = document.getElementById('updateProjectGithub').value;
+            const projectImageFile = document.getElementById('updateProjectImage').files[0];
+
+            if (projectName && projectDescription && projectGithub && projectImageFile) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const projectImage = event.target.result; // Base64-encoded image
+                    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+                    const projectIndex = projects.findIndex(project => project.name === projectName);
+
+                    if (projectIndex !== -1) {
+                        // Update project
+                        projects[projectIndex] = { name: projectName, description: projectDescription, image: projectImage, github: projectGithub };
+                        localStorage.setItem('projects', JSON.stringify(projects));
+                        alert(`Project "${projectName}" updated successfully!`);
+                        closeModal('updateProjectsForm');
+                    }
+                };
+                reader.readAsDataURL(projectImageFile); // Convert image to Base64
+            }
+        });
+
+        // Open Add Projects Form
+        function openAddProjectsForm() {
+            closeModal('projectsModal');
+            openModal('addProjectsForm');
+        }
+
+        // Handle Add Projects Form Submission
+        document.getElementById('addProjectsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const projectName = document.getElementById('addProjectName').value;
+            const projectDescription = document.getElementById('addProjectDescription').value;
+            const projectGithub = document.getElementById('addProjectGithub').value;
+            const projectImageFile = document.getElementById('addProjectImage').files[0];
+
+            if (projectName && projectDescription && projectGithub && projectImageFile) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const projectImage = event.target.result; // Base64-encoded image
+                    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+                    // Check if project already exists
+                    const projectExists = projects.some(project => project.name === projectName);
+                    if (projectExists) {
+                        alert(`Project "${projectName}" already exists!`);
+                    } else {
+                        // Add new project
+                        projects.push({ name: projectName, description: projectDescription, image: projectImage, github: projectGithub });
+                        localStorage.setItem('projects', JSON.stringify(projects));
+                        alert(`Project "${projectName}" added successfully!`);
+                        closeModal('addProjectsForm');
+                    }
+                };
+                reader.readAsDataURL(projectImageFile); // Convert image to Base64
+            }
+        });
+
+        // Open Delete Projects Form
+        function openDeleteProjectsForm() {
+            closeModal('projectsModal');
+            openModal('deleteProjectsForm');
+
+            // Populate projects dropdown
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            const select = document.getElementById('deleteProjectSelect');
+            select.innerHTML = '<option value="">Select a project</option>';
+            projects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project.name;
+                option.textContent = project.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Handle Delete Projects Form Submission
+        document.getElementById('deleteProjectsFormContent').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const projectName = document.getElementById('deleteProjectSelect').value;
+
+            if (projectName) {
+                const projects = JSON.parse(localStorage.getItem('projects')) || [];
+                const updatedProjects = projects.filter(project => project.name !== projectName);
+
+                localStorage.setItem('projects', JSON.stringify(updatedProjects));
+                alert(`Project "${projectName}" deleted successfully!`);
+                closeModal('deleteProjectsForm');
+            }
+        });
+
+        // Open Resume Upload Modal
+        function openResumeUpload() {
+            openModal('resumeUploadModal');
+        }
+
+        // Handle Resume Upload Form Submission
+        document.getElementById('resumeUploadForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('resumeFile');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                if (allowedTypes.includes(file.type)) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const resumeData = event.target.result;
+                        localStorage.setItem('resume', resumeData);
+                        alert('Resume uploaded successfully!');
+                        closeModal('resumeUploadModal');
+                    };
+                    reader.readAsDataURL(file); // Convert file to Base64
+                } else {
+                    alert('Invalid file format. Please upload a .docx or .pdf file.');
+                }
+            }
+        });
+
+        // Open Profile Picture Upload Modal
+        function openProfilePicUpload() {
+            openModal('profilePicUploadModal');
+        }
+
+        // Handle Profile Picture Upload Form Submission
+        document.getElementById('profilePicUploadForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('profilePicFile');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+                if (allowedTypes.includes(file.type)) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const profilePicData = event.target.result;
+                        localStorage.setItem('profilePic', profilePicData);
+                        alert('Profile picture uploaded successfully!');
+                        closeModal('profilePicUploadModal');
+                    };
+                    reader.readAsDataURL(file); // Convert image to Base64
+                } else {
+                    alert('Invalid file format. Please upload a .png, .jpg, .jpeg, or .gif file.');
+                }
+            }
+        });
+    
+</body>
+</html>
