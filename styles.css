@@ -261,23 +261,23 @@
     }
 
     /* Responsive Design for Home Section */
-@media (max-width: 768px) {
-    .home {
-        padding: 0 5%; /* Reduce padding for smaller screens */
-    }
+    @media (max-width: 768px) {
+        .home {
+            padding: 0 5%; /* Reduce padding for smaller screens */
+        }
 
-    .home-content h1 {
-        font-size: clamp(2rem, 8vw, 3rem); /* Adjust font size for smaller screens */
-    }
+        .home-content h1 {
+            font-size: clamp(2rem, 8vw, 3rem); /* Adjust font size for smaller screens */
+        }
 
-    .home-content h3 {
-        font-size: clamp(1rem, 3vw, 1.2rem); /* Adjust font size for smaller screens */
-    }
+        .home-content h3 {
+            font-size: clamp(1rem, 3vw, 1.2rem); /* Adjust font size for smaller screens */
+        }
 
-    .social-media {
-        bottom: 10vh; /* Adjust position for smaller screens */
+        .social-media {
+            bottom: 10vh; /* Adjust position for smaller screens */
+        }
     }
-}
 
     /* About Section */
     .about {
