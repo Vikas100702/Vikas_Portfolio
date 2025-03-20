@@ -1,0 +1,93 @@
+{
+    "socialLinks": {
+        "github": "https://github.com/Vikas100702",
+        "linkedin": "https://linkedin.com/in/Vikas100702",
+        "discord": "https://discord.com/users/vikasverma_07",
+        "telegram": "https://t.me/vikas_verma_7",
+        "twitter": "https://x.com/vikas_verma77",
+        "reddit": "https://reddit.com/user/Fragrant_Clerk_3435",
+        "gmail": "mailto:vikasportfolio2002@gmail.com"
+    },
+    "aboutMe": "Hi, I'm Vikas Verma, a dedicated and passionate software developer with a strong focus on building scalable, efficient, and user-friendly applications. I specialize in cross-platform mobile development using Flutter and Dart, where I create visually appealing and high-performance applications with seamless UI/UX designs. My expertise extends to Kotlin for Android development, Firebase for backend integration, and SQL for database management, ensuring robust and dynamic solutions for real-world problems. Currently, I am pursuing my Master's degree in Computer Applications (MCA) at Galgotias University, where I continue to expand my knowledge and technical skills. I have a solid foundation in programming languages like Java, JavaScript, HTML, and CSS, and I am proficient in using tools like GitHub for version control and collaborative development. I am always eager to explore new technologies and frameworks to deliver innovative solutions. My goal is to continuously grow as a developer, contribute to impactful projects, and make a meaningful difference in the tech world.",
+    "skills": [
+        {
+            "name": "Flutter & Dart",
+            "description": "Expert in building cross-platform applications with beautiful UI/UX design using Flutter and Dart. Skilled in advanced state management for efficient and scalable app development.",
+            "icon": "bx bxl-flutter"
+        },
+        {
+            "name": "Kotlin",
+            "description": "Experienced in Kotlin, with a focus on developing modern, concise, and efficient Android applications using industry best practices.",
+            "icon": "bx bxl-android"
+        },
+        {
+            "name": "HTML",
+            "description": "Proficient in HTML, with a strong foundation in structuring and organizing web content for seamless user experiences.",
+            "icon": "bx bxl-html5"
+        },
+        {
+            "name": "CSS",
+            "description": "Skilled in CSS, adept at crafting visually appealing and responsive designs to enhance the aesthetics and usability of web applications.",
+            "icon": "bx bxl-css3"
+        },
+        {
+            "name": "JavaScript",
+            "description": "Experienced in JavaScript, capable of building dynamic and interactive web functionalities to create engaging user experiences.",
+            "icon": "bx bxl-javascript"
+        },
+        {
+            "name": "Java",
+            "description": "Proficient in Java, with experience in building robust and scalable applications, leveraging object-oriented programming principles.",
+            "icon": "bx bxl-java"
+        },        
+        {
+            "name": "Firebase",
+            "description": "Skilled in Firebase, adept at integrating real-time databases, authentication, and cloud services to build dynamic and scalable applications.",
+            "icon": "bx bxl-firebase"
+        },
+        {
+            "name": "SQL",
+            "description": "Experienced in SQL, with expertise in designing and managing databases, writing efficient queries, and ensuring data integrity.",
+            "icon": "bx bxs-data"
+        },
+        {
+            "name": "Github",
+            "description": "Proficient in GitHub, skilled in version control, collaborative development, and managing code repositories for efficient project workflows.",
+            "icon": "bx bxl-github"
+        }    
+    ],
+    "projects": [
+        {
+            "name": "CosmosPedia",
+            "description": "A Personalized Astronomical Companion that provides users with an interactive space exploration experience.",
+            "image": "images/projects/cosmospedia.png",
+            "github": "https://github.com/Vikas100702/Cosmospedia"           
+        },
+        {
+            "name": "Iter",
+            "description": "Chat platform that integrates intelligent AI features to provide a superior user experience.",
+            "image": "images/projects/iter.png",
+            "github": "https://github.com/Vikas100702/Iter"
+        },
+        {
+            "name": "Dog Breed Detection App",
+            "description": "The Dogs Breed Detection App is a Flutter-based mobile application designed to identify and classify dog breeds using machine learning. The app leverages TensorFlow Lite (TFLite) for real-time image processing and breed detection, demonstrating the flexibility of the machine learning model.",
+            "image": "images/projects/dog-breed-detection.png",
+            "github": "https://github.com/Vikas100702/dogs_breed_detection_app"
+        },
+        {
+            "name": "TuneHub",
+            "description": "Discover a seamless and immersive music experience with TuneHub, the ultimate music player app designed for music lovers. Built with Flutter and powered by GetX for state management, TuneHub offers a sleek, modern interface and powerful features to enhance your music listening experience.",
+            "image": "images/projects/tunehub.png",
+            "github": "https://github.com/Vikas100702/TuneHub"
+        },
+        {
+            "name": "Mini Grocery App",
+            "description": "Your one-stop solution for seamless grocery shopping! Built with Flutter and powered by BLoC state management, this app offers a smooth and intuitive shopping experience. Browse through a wide range of products, add them to your cart or wishlist, and manage your grocery list effortlessly.",
+            "image": "images/projects/mini-grocery-app.png",
+            "github": "https://github.com/Vikas100702/Mini-Grocery-App"
+        }        
+    ],
+    "resume": "files/VIKAS_VERMA_CV.pdf",
+    "profilePic": "images/profile-pic.jpg"
+}
