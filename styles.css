@@ -1,3 +1,4 @@
+
     /* Embedded CSS */
     @import url("https://fonts.googleapis.com/css?family=Poppins:@300,400,500,600,700,800,900&display=swap");
 
@@ -165,70 +166,45 @@
     }
 
     /* Home Section */
-    /* Home Section */
-.home {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10%;
-    text-align: center; /* Center align text */
-}
-
-.home-content .hi {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 600;
-    color: #00abf0;
-}
-
-.home-content h1 {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 800;
-    margin: 10px 0;
-}
-
-.home-content h3 {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    font-weight: 300;
-    margin-bottom: 5vh;
-}
-
-.home-content a {
-    border: 2px solid #ededed;
-    padding: 1.5vh 2vw;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #ededed;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-}
-
-.home-content a:hover {
-    background: #00abf0;
-    color: #081b29;
-}
-
-.social-media a:hover {
-    transform: translateY(-10px);
-}
-
-    /* Typing Animation Keyframes */
-    @keyframes typing {
-        from {
-            width: 0; /* Start with no width */
-        }
-        to {
-            width: 100%; /* Expand to full width */
-        }
+    .home {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10%;
+        text-align: center; /* Center align text */
     }
 
-    /* Blinking Cursor Effect */
-    @keyframes blink-caret {
-        from, to {
-            border-right: 2px solid transparent; /* Hide the cursor */
-        }
-        50% {
-            border-right: 2px solid #00abf0; /* Show the cursor */
-        }
+    .home-content .hi {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 600;
+        color: #00abf0;
+    }
+
+    .home-content h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 800;
+        margin: 10px 0;
+    }
+
+    .home-content h3 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        font-weight: 300;
+        margin-bottom: 5vh;
+    }
+
+    .home-content a {
+        border: 2px solid #ededed;
+        padding: 1.5vh 2vw;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: #ededed;
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .home-content a:hover {
+        background: #00abf0;
+        color: #081b29;
     }
 
     .social-media {
@@ -467,23 +443,22 @@
         background-color: #414141;
         top: 0;
         bottom: 0;
-        left: 50%;
-        margin-left: -1px;
+        left: 20px; /* Move the timeline line to the left */
         transform: translateX(-50%);
     }
 
     .timeline-item {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start; /* Align items to the left */
         align-items: flex-start;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
         position: relative;
+        padding-left: 60px; /* Add padding to align content with the timeline */
     }
 
     .degree-info {
-        width: 45%;
-        text-align: right;
-        padding-right: 20px;
+        width: 100%; /* Full width for small screens */
+        text-align: left; /* Align text to the left */
     }
 
     .degree-info h4 {
@@ -497,6 +472,7 @@
         color: #aaa;
         font-size: clamp(1.1rem, 2vw, 1.2rem);
         font-weight: 400;
+        margin-bottom: 10px;
     }
 
     .timeline-icon {
@@ -509,8 +485,7 @@
         justify-content: center;
         z-index: 1;
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0; /* Position the icon to the left */
         top: 0;
     }
 
@@ -521,96 +496,44 @@
     }
 
     .institution-info {
-        width: 45%;
-        padding-left: 20px;
-        position: relative;
-        padding-top: 0;
-        margin-left: 5%;
+        width: 100%; /* Full width for small screens */
+        text-align: left; /* Align text to the left */
     }
 
     .institution-info h4 {
-        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
         font-weight: 600;
-        color: #ededed;
-        margin-bottom: 15px;
-        text-align: left;
-    }
-
-    .separator {
-        width: 50px;
-        height: 2px;
-        background-color: #666;
-        margin-bottom: 15px;
+        color: #00abf0;
+        margin-bottom: 5px;
     }
 
     .institution-info p {
         color: #aaa;
-        font-size: clamp(1.1rem, 1vw, 1.2rem);
+        font-size: clamp(1rem, 2vw, 1.1rem);
         font-weight: 400;
         line-height: 1.6;
-        text-align: left;
     }
 
     /* Media Queries for Smaller Screens */
     @media (max-width: 768px) {
         .timeline::before {
-            left: 20px;
+            left: 20px; /* Move the timeline line to the left */
         }
 
         .timeline-item {
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 40px;
+            padding-left: 60px; /* Add padding to align content with the timeline */
         }
 
-        .degree-info,
-        .institution-info {
-            width: 100%;
-            text-align: left;
-            padding: 0;
-        }
-
-        .degree-info {
-            margin-bottom: 10px;
-        }
-
-        .timeline-icon {
-            left: 20px;
-            transform: translateX(0);
-            top: 10px;
+        .degree-info h4 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem); /* Adjust font size for smaller screens */
         }
 
         .institution-info h4 {
-            margin-top: 10px;
+            font-size: clamp(1rem, 3vw, 1.2rem); /* Adjust font size for smaller screens */
         }
 
-        .separator {
-            width: 30px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .section-title {
-            font-size: clamp(1.8rem, 6vw, 2.2rem);
-        }
-
-        .degree-info h4,
-        .institution-info h4 {
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-        }
-
-        .year,
         .institution-info p {
-            font-size: clamp(0.8rem, 3vw, 1rem);
-        }
-
-        .timeline-icon {
-            width: 30px;
-            height: 30px;
-        }
-
-        .timeline-icon i {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2vw, 1rem); /* Adjust font size for smaller screens */
         }
     }
 
@@ -691,7 +614,7 @@
         .project-image {
             height: 120px; /* Further adjust height for very small screens */
         }
-    }        
+    }
 
     /* Overlay */
     .overlay {
