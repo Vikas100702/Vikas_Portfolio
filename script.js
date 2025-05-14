@@ -3,7 +3,7 @@
         .then(response => response.json())
         .then(data => {
             // Update social links
-            const platforms = ['github', 'linkedin', 'discord', 'telegram', 'twitter', 'reddit', 'gmail'];
+            const platforms = ['github', 'linkedin', 'discord', 'telegram', 'twitter', 'reddit', 'gmail', 'upwork'];
             platforms.forEach(platform => {
                 const linkElement = document.getElementById(`${platform}-link`);
                 if (data.socialLinks[platform]) {
