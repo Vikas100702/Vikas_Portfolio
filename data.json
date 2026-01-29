@@ -21,9 +21,9 @@
             "icon": "bx bxl-android"
         },
         {
-            "name": "HTML",
-            "description": "Proficient in HTML, with a strong foundation in structuring and organizing web content for seamless user experiences.",
-            "icon": "bx bxl-html5"
+            "name": "Fast API",
+            "description": "Skilled in architecting scalable backend systems and robust APIs with a focus on developer speed and code efficiency.",
+            "icon": "bx bx-bolt-circle"
         },
         {
             "name": "CSS",
