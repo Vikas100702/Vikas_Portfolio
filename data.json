@@ -26,9 +26,9 @@
             "icon": "bx bx-bolt-circle"
         },
         {
-            "name": "CSS",
-            "description": "Skilled in CSS, adept at crafting visually appealing and responsive designs to enhance the aesthetics and usability of web applications.",
-            "icon": "bx bxl-css3"
+            "name": "Docker",
+            "description": "Streamlining deployment pipelines by packaging applications and dependencies into lightweight, portable containers.",
+            "icon": "bx bxl-docker"
         },
         {
             "name": "JavaScript",
