@@ -16,6 +16,16 @@
             "icon": "bx bxl-flutter"
         },
         {
+            "name": "Firebase",
+            "description": "Skilled in Firebase, adept at integrating real-time databases, authentication, and cloud services to build dynamic and scalable applications.",
+            "icon": "bx bxl-firebase"
+        },
+        {
+            "name": "Android Studio",
+            "description": "Experienced in utilizing Android Studio for efficient Flutter development, leveraging advanced debugging, performance profiling, and emulation tools.",
+            "icon": "bx bxl-android"
+        },
+        {
             "name": "Fast API",
             "description": "Skilled in architecting scalable backend systems and robust APIs with a focus on developer speed and code efficiency.",
             "icon": "bx bx-bolt-circle"
@@ -34,11 +44,6 @@
             "name": "AWS (EC2, S3)",
             "description": "Proficient in managing cloud infrastructure, utilizing EC2 for scalable compute capacity and S3 for durable data storage.",
             "icon": "bx bxl-aws"
-        },        
-        {
-            "name": "Firebase",
-            "description": "Skilled in Firebase, adept at integrating real-time databases, authentication, and cloud services to build dynamic and scalable applications.",
-            "icon": "bx bxl-firebase"
         },
         {
             "name": "SQL",
@@ -49,7 +54,7 @@
             "name": "Github",
             "description": "Proficient in GitHub, skilled in version control, collaborative development, and managing code repositories for efficient project workflows.",
             "icon": "bx bxl-github"
-        }    
+        }
     ],
     "projects": [
         {
