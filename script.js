@@ -40,7 +40,7 @@
                 }
                 skillCard.innerHTML = `
                     <div class="icon-container">
-                        $iconHtml
+                        ${iconHtml}
                     </div>
                     <h3>${skill.name}</h3>
                     <p>${skill.description}</p>
