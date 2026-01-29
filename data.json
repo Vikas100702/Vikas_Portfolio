@@ -31,9 +31,9 @@
             "icon": "bx bxl-docker"
         },
         {
-            "name": "JavaScript",
-            "description": "Experienced in JavaScript, capable of building dynamic and interactive web functionalities to create engaging user experiences.",
-            "icon": "bx bxl-javascript"
+            "name": "Postman",
+            "description": "Streamlining API development by creating shared collections, mocking endpoints, and maintaining up-to-date documentation.",
+            "icon": "bx bx-paper-plane"
         },
         {
             "name": "Java",
