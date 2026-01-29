@@ -36,9 +36,9 @@
             "icon": "bx bx-paper-plane"
         },
         {
-            "name": "Java",
-            "description": "Proficient in Java, with experience in building robust and scalable applications, leveraging object-oriented programming principles.",
-            "icon": "bx bxl-java"
+            "name": "AWS (EC2, S3)",
+            "description": "Proficient in managing cloud infrastructure, utilizing EC2 for scalable compute capacity and S3 for durable data storage.",
+            "icon": "bx bxl-aws"
         },        
         {
             "name": "Firebase",
