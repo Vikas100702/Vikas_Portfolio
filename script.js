@@ -28,9 +28,19 @@
             data.skills.forEach(skill => {
                 const skillCard = document.createElement('div');
                 skillCard.className = 'skill-card';
+
+                // CHECK: Is this an SVG string or a class name?
+                let iconHtml;
+                if(skill.icon.trim().startsWith('<svg')) {
+                    // It's direct SVG code, use it as is
+                    iconHtml = skill.icon;
+                } else {
+                    // It's a Boxicon class, wrap it in <i> tags
+                    iconHtml = `<i class = '${skill.icon}'></i>`;
+                }
                 skillCard.innerHTML = `
                     <div class="icon-container">
-                        <i class='${skill.icon}'></i>
+                        $iconHtml
                     </div>
                     <h3>${skill.name}</h3>
                     <p>${skill.description}</p>
