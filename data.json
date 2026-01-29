@@ -28,7 +28,7 @@
         {
             "name": "Postman",
             "description": "Streamlining API development by creating shared collections, mocking endpoints, and maintaining up-to-date documentation.",
-            "icon": "bx bx-paper-plane"
+            "icon": "icon-postman"
         },
         {
             "name": "AWS (EC2, S3)",
