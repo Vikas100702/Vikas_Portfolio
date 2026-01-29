@@ -15,11 +15,11 @@
             "description": "Expert in building cross-platform applications with beautiful UI/UX design using Flutter and Dart. Skilled in advanced state management for efficient and scalable app development.",
             "icon": "bx bxl-flutter"
         },
-        {
+        /*{
             "name": "Kotlin",
             "description": "Experienced in Kotlin, with a focus on developing modern, concise, and efficient Android applications using industry best practices.",
             "icon": "bx bxl-android"
-        },
+        },*/
         {
             "name": "Fast API",
             "description": "Skilled in architecting scalable backend systems and robust APIs with a focus on developer speed and code efficiency.",
